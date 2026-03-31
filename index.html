@@ -101,10 +101,160 @@
             display: flex;
             align-items: center;
             padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Tech Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.06) 0%, transparent 60%);
+            z-index: 0;
+            animation: backgroundPulse 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            animation: gridMove 60s linear infinite;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        /* Floating Tech Particles */
+        .tech-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(16, 185, 129, 0.15));
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .particle-1 {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .particle-2 {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            animation-duration: 30s;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+        }
+
+        .particle-3 {
+            width: 100px;
+            height: 100px;
+            top: 70%;
+            left: 15%;
+            animation-delay: 4s;
+            animation-duration: 35s;
+        }
+
+        .particle-4 {
+            width: 70px;
+            height: 70px;
+            top: 30%;
+            left: 70%;
+            animation-delay: 6s;
+            animation-duration: 28s;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15));
+        }
+
+        .particle-5 {
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            animation-delay: 8s;
+            animation-duration: 32s;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(139, 92, 246, 0.15));
+        }
+
+        .particle-6 {
+            width: 90px;
+            height: 90px;
+            top: 15%;
+            left: 85%;
+            animation-delay: 10s;
+            animation-duration: 27s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.6;
+            }
+            25% {
+                transform: translate(30px, -30px) scale(1.1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-20px, 20px) scale(0.9);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translate(20px, 30px) scale(1.05);
+                opacity: 0.7;
+            }
         }
 
         .hero-content {
             max-width: 700px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-subtitle {
@@ -119,12 +269,22 @@
 
         .hero-title {
             font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards 0.2s;
+        }
+
+        .hero-headline {
+            font-family: 'Playfair Display', serif;
             font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 400;
             line-height: 1.2;
             margin-bottom: 1.5rem;
             opacity: 0;
-            animation: fadeInUp 0.8s forwards 0.4s;
+            animation: fadeInUp 0.8s forwards 0.6s;
         }
 
         .hero-description {
@@ -615,7 +775,12 @@
             }
 
             .hero-title {
-                font-size: clamp(1.75rem, 8vw, 2.5rem);
+                font-size: clamp(2rem, 8vw, 3rem);
+                margin-bottom: 0.75rem;
+            }
+
+            .hero-headline {
+                font-size: clamp(1.5rem, 7vw, 2.25rem);
                 margin-bottom: 1rem;
             }
 
@@ -717,6 +882,27 @@
     </style>
 </head>
 <body>
+    <!-- Neural Network / Data Connection SVG Pattern -->
+    <svg class="background-pattern" xmlns="http://www.w3.org/2000/svg" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.03; pointer-events: none;">
+        <defs>
+            <pattern id="neural-network" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="2" fill="#3b82f6"/>
+                <circle cx="100" cy="50" r="2" fill="#10b981"/>
+                <circle cx="190" cy="10" r="2" fill="#8b5cf6"/>
+                <circle cx="50" cy="100" r="2" fill="#ec4899"/>
+                <circle cx="150" cy="150" r="2" fill="#3b82f6"/>
+                <circle cx="10" cy="190" r="2" fill="#10b981"/>
+                <line x1="10" y1="10" x2="100" y2="50" stroke="#3b82f6" stroke-width="0.5" opacity="0.5"/>
+                <line x1="100" y1="50" x2="190" y2="10" stroke="#10b981" stroke-width="0.5" opacity="0.5"/>
+                <line x1="10" y1="10" x2="50" y2="100" stroke="#8b5cf6" stroke-width="0.5" opacity="0.5"/>
+                <line x1="50" y1="100" x2="150" y2="150" stroke="#ec4899" stroke-width="0.5" opacity="0.5"/>
+                <line x1="150" y1="150" x2="10" y2="190" stroke="#3b82f6" stroke-width="0.5" opacity="0.5"/>
+                <line x1="100" y1="50" x2="50" y2="100" stroke="#10b981" stroke-width="0.5" opacity="0.5"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#neural-network)"/>
+    </svg>
+    
     <div class="scroll-progress"></div>
 
     <nav>
@@ -735,10 +921,21 @@
 
     <main>
         <section class="hero" id="about">
+            <!-- Floating Tech Particles -->
+            <div class="tech-particles">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+                <div class="particle particle-3"></div>
+                <div class="particle particle-4"></div>
+                <div class="particle particle-5"></div>
+                <div class="particle particle-6"></div>
+            </div>
+            
             <div class="container">
                 <div class="hero-content">
+                    <h1 class="hero-title">Chaitanya Dadi</h1>
                     <div class="hero-subtitle">Senior SQL/Azure DBA | AI Generalist | Certified SAFe® 6 Practitioner</div>
-                    <h1 class="hero-title">Database Architecture Meets AI Innovation</h1>
+                    <h2 class="hero-headline">Database Architecture Meets AI Innovation</h2>
                     <p class="hero-description">
                         Architecting intelligent database solutions at the intersection of AI, cloud, and emerging technologies. 
                         Microsoft Certified Azure Database Administrator with 12+ years of enterprise experience, passionate about 
@@ -832,7 +1029,6 @@
         <section id="work">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">02</div>
                     <h2 class="section-title">Professional Experience</h2>
                 </div>
                 <div class="portfolio-grid">
@@ -905,7 +1101,6 @@
         <section style="background: #fff; padding: 6rem 0; border-top: 1px solid var(--border);">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">03</div>
                     <h2 class="section-title">Testimonials & Recommendations</h2>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto;">
@@ -962,7 +1157,6 @@
         <section id="skills">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">04</div>
                     <h2 class="section-title">Skills & Expertise</h2>
                 </div>
                 <div class="skills-grid">
@@ -1060,7 +1254,6 @@
         <section style="background: #fff; padding: 5rem 0; border-top: 1px solid var(--border);">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">05</div>
                     <h2 class="section-title">Technologies & Tools</h2>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto;">
@@ -1111,7 +1304,6 @@
         <section id="certifications" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">06</div>
                     <h2 class="section-title">Certifications & Education</h2>
                 </div>
                 <div class="portfolio-grid">
@@ -1186,7 +1378,6 @@
         <section id="case-studies" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 6rem 0;">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">07</div>
                     <h2 class="section-title">Notable Case Studies</h2>
                 </div>
                 <div class="blog-grid">
@@ -1336,7 +1527,6 @@
         <section id="writing">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">08</div>
                     <h2 class="section-title">Recent Writing</h2>
                 </div>
                 <div class="blog-grid">
@@ -1963,7 +2153,6 @@
         <section id="contact">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-number">09</div>
                     <h2 class="section-title">Let's Connect</h2>
                 </div>
                 <div class="contact-content">
